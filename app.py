@@ -18,7 +18,7 @@ os.environ['LANGCHAIN_API_KEY'] = 'lsv2_pt_dd622a7c4ccb4e9b93f28e78b778da52_4aee
 
 st.set_page_config(page_title="DEA Post-Call Follow-up Assistant", page_icon="🤖", layout="wide")
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "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"
 CLOSE_API_KEY = "api_0vDMSu1OitLWCjbtX3Gvdw.7RHFotMMC01tkWE9uq359X"
 client = Client(CLOSE_API_KEY)
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
@@ -281,3 +281,4 @@ if st.button("🚀 Analyze & Generate Follow-up", use_container_width=True):
             st.success("Follow-up email generated successfully!")
             st.markdown("### Generated Follow-up Email")
             st.write(email_text)
+
