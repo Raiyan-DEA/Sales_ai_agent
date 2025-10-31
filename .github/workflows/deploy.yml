@@ -1,0 +1,40 @@
+name: Deploy to EC2 on push to main
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    # Run this job on the self-hosted runner you installed
+    runs-on: [ self-hosted, ec2-salesai ]
+
+    steps:
+      - name: Pull latest code into /opt/Sales_ai_agent
+        run: |
+          set -euo pipefail
+          cd /opt/Sales_ai_agent
+          # Ensure the repo is cleanly synced to origin/main
+          git fetch origin
+          git reset --hard origin/main
+
+      - name: Install/Update Python dependencies in venv
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd /opt/Sales_ai_agent
+          # activate venv and install dependencies
+          source .venv/bin/activate
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          deactivate
+
+      - name: Restart service
+        run: sudo -n systemctl restart salesai
+
+      - name: Check service status
+        run: |
+          sudo -n systemctl status salesai --no-pager || true
+          # If it failed, print last logs to help debug:
+          journalctl -u salesai -n 200 --no-pager || true
