@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     # Run this job on the self-hosted runner you installed
-    runs-on: [ self-hosted, ec2-salesai ]
+    runs-on: [self-hosted, linux, X64]
 
     steps:
       - name: Pull latest code into /opt/Sales_ai_agent
