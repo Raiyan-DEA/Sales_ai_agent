@@ -199,7 +199,7 @@ def gpt_write_email(crm_data, insights, selected_content):
     return gpt_call(system, user, temperature=0.9, max_tokens=1000)
 
 # ========= UI =========
-st.title("🤖 DEA Post-Call Nurture Assistant (GPT Reasoning)")
+st.title("🤖 DEA Post-Call Nurture Assistant")
 
 st.subheader("🎧 Fathom Recording or Transcript")
 transcript = st.text_area("Paste transcript or Fathom call summary", height=200)
@@ -246,3 +246,4 @@ if st.button("🚀 Analyze & Generate Follow-up", use_container_width=True):
     st.success("Follow-up email generated successfully!")
     st.markdown("### Generated Follow-up Email")
     st.write(email_text)
+
