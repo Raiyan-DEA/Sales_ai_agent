@@ -1,0 +1,7 @@
+streamlit>=1.38
+pandas>=2.2
+openpyxl>=3.1
+python-dotenv>=1.0
+openai>=1.40
+langsmith>=0.1
+closeio>=2.0
